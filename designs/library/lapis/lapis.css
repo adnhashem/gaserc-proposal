@@ -1,0 +1,128 @@
+/* ج · اللازورد الهندسي — هندسي · تراثي · دقيق
+   البصمة: النجمة الثمانية كوحدة قياس (clip-path ثماني) + نقاط ذهبية على العُقد فقط + شريط الإتاحة */
+html.v-lapis {
+  --p-50: #EEF0FD; --p-100: #DDE1FB; --p-200: #BBC3F6; --p-300: #8F9BEE; --p-400: #6271E2;
+  --p-500: #3F4FCF; --p-600: #2E3BB0; --p-700: #24308C; --p-800: #1C266C; --p-900: #141B4C;
+  --bg: #F7F7FD; --surface: #FFFFFF; --text: #121838; --muted: #4F5578; --accent: #B07F22;
+  --radius-sm: 0; --radius-md: 2px; --radius-lg: 4px;
+  --shadow-1: 0 1px 2px rgb(18 24 56 / .06); --shadow-2: 0 14px 36px rgb(18 24 56 / .14);
+  --font-display: "Noto Kufi Arabic"; --font-body: "IBM Plex Sans Arabic"; --font-num: "Rubik";
+  --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.333rem;
+  --fs-lg: 1.777rem; --fs-xl: 2.369rem; --fs-2xl: 3.157rem;
+  --chamfer: 14px;
+  --chamfer-shape: polygon(var(--chamfer) 0, calc(100% - var(--chamfer)) 0, 100% var(--chamfer), 100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%, var(--chamfer) 100%, 0 calc(100% - var(--chamfer)), 0 var(--chamfer));
+}
+h1, h2 { font-weight: 700; }
+.sec-head h2 { font-size: var(--fs-lg); }
+
+/* ── الهيرو: حقل النجوم ── */
+.hero { position: relative; z-index: 3; overflow: visible; background: var(--bg); min-height: min(700px, calc(100dvh - 150px)); display: grid; align-items: center; }
+.starfield { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.starfield .st { transform-box: fill-box; transform-origin: center; transform: rotate(calc(var(--f, 0) * 45deg)) scale(calc(1 + var(--f, 0) * .12));
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out); }
+.starfield .st rect { fill: var(--p-100); fill-opacity: calc(var(--f, 0) * .9); stroke: var(--p-200); stroke-width: 1.2; transition: stroke var(--dur-slow) ease; vector-effect: non-scaling-stroke; }
+.starfield .st circle { fill: var(--p-300); transition: fill var(--dur-slow) ease, r var(--dur-slow) ease; }
+.starfield .st.halo { --f: .5; }
+.starfield .st.halo rect { stroke: var(--p-400); }
+.starfield .st.lit circle { fill: var(--accent); r: 4; }
+.starfield .st.lit rect { stroke: var(--accent); }
+html.motion .starfield .st.enter { opacity: 0; transform: rotate(45deg) scale(.6); }
+.hero-grid { position: relative; z-index: 2; padding-block: var(--s-8); }
+.panel { position: relative; isolation: isolate; width: min(640px, 100%); padding: var(--s-7) var(--s-7) var(--s-6); filter: drop-shadow(0 14px 30px rgb(18 24 56 / .12)); }
+/* الشكل المشطوف على طبقتين خلفيتين، لا على اللوحة: لا يقصّ النتائج ولا حلقة التركيز */
+.panel::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--p-200); clip-path: var(--chamfer-shape); pointer-events: none; }
+.panel::after { content: ""; position: absolute; inset: 1px; z-index: -1; background: var(--surface); clip-path: var(--chamfer-shape); pointer-events: none; }
+.hero h1 { font-size: var(--fs-xl); line-height: 1.45; }
+.hero .lead { color: var(--muted); font-size: 1.0625rem; margin-block: var(--s-4) var(--s-5); max-width: 48ch; }
+.search { position: relative; z-index: 3; }
+.panel .results { position: absolute; inset-inline: 0; top: 100%; margin-top: var(--s-2); z-index: 6; }
+.search-field input, .search-form .btn { border-radius: 0; }
+.search-form .btn { clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px), 0 10px); }
+.chip { border-radius: 0; }
+
+/* شريط النقش بين الأقسام */
+.band { height: 28px; background-color: var(--surface); border-block: 1px solid var(--line);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='-14 -14 28 28'%3E%3Cg fill='none' stroke='%23BBC3F6' stroke-width='1'%3E%3Crect x='-7' y='-7' width='14' height='14'/%3E%3Crect x='-7' y='-7' width='14' height='14' transform='rotate(45)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 28px 28px; background-position: center; }
+
+/* ── الأرقام داخل نجمة ── */
+.stats-sec { padding-block: var(--s-8); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); }
+.stat { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-1); text-align: center; aspect-ratio: 1; max-width: 200px; margin-inline: auto; width: 100%; }
+.stat svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stat svg rect { fill: var(--surface); stroke: var(--p-200); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.stat b { position: relative; font-size: var(--fs-xl); color: var(--p-700); line-height: 1; }
+.stat span { position: relative; color: var(--muted); font-size: 0.875rem; max-width: 10ch; line-height: 1.5; }
+@media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } }
+
+/* ── أحدث الإصدارات: صفوف متناوبة بإطار ثماني ── */
+.lrows { display: grid; gap: var(--s-6); }
+.lrow { position: relative; isolation: isolate; display: grid; grid-template-columns: 132px 1fr; gap: var(--s-6); align-items: center; text-decoration: none; color: var(--text); padding: var(--s-5); padding-inline-start: calc(var(--s-5) + 4px); }
+.lrow::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--surface); clip-path: var(--chamfer-shape); }
+.lrow::after { content: ""; position: absolute; inset-block: var(--chamfer); inset-inline-start: 0; width: 4px; background: var(--avail-c); }
+.lrow.alt { grid-template-columns: 1fr 132px; }
+.lrow.alt .oframe { order: 2; }
+.oframe { display: block; padding: var(--s-2); background: var(--p-50); clip-path: var(--chamfer-shape); transition: transform var(--dur-slow) var(--ease-out); }
+.oframe .cover { clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px); }
+.ltext { display: grid; gap: var(--s-2); }
+.ltext .k { color: var(--p-700); font-size: 0.875rem; font-weight: 700; }
+.ltext b { font-family: var(--font-display); font-size: var(--fs-md); line-height: 1.6; }
+@media (hover: hover) and (pointer: fine) { .lrow:hover .oframe { transform: rotate(-3deg) scale(1.03); } .lrow:hover b { color: var(--p-700); } }
+@media (max-width: 760px) { .lrow, .lrow.alt { grid-template-columns: 110px 1fr; gap: var(--s-4); } .lrow.alt .oframe { order: 0; } }
+
+/* ── تصفّح حسب النوع: بلاطات ثمانية ── */
+.tiles-sec { background: var(--surface); }
+.otiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s-4); }
+.otile { position: relative; isolation: isolate; min-width: 0; display: grid; justify-items: center; text-align: center; gap: var(--s-2); padding: var(--s-4) var(--s-3); text-decoration: none; color: var(--text); aspect-ratio: 1; align-content: center; }
+.otile::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--p-50); clip-path: var(--octagon); transition: background-color var(--dur-base) ease; }
+.oico { width: 56px; height: 56px; display: grid; place-items: center; background: var(--p-600); color: #fff; font-size: 1.5rem; clip-path: var(--octagon); transition: transform var(--dur-slow) var(--ease-out); }
+.otile b { font-family: var(--font-display); font-size: 1rem; }
+.otile span:last-child { color: var(--muted); font-size: 0.875rem; }
+@media (hover: hover) and (pointer: fine) { .otile:hover::before { background: var(--p-100); } .otile:hover .oico { transform: rotate(22.5deg); } }
+@media (max-width: 960px) { .otiles { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .otiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .oico { width: 44px; height: 44px; font-size: 1.25rem; } }
+
+/* ── الأخبار: شبكة بتواريخ في نجمة ── */
+.news-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--s-8); align-items: start; }
+@media (max-width: 960px) { .news-grid { grid-template-columns: 1fr; } }
+.ncards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+.ncard { position: relative; isolation: isolate; display: grid; gap: var(--s-2); padding: var(--s-5); text-decoration: none; color: var(--text); }
+.ncard::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--surface); clip-path: var(--chamfer-shape); box-shadow: inset 0 3px 0 var(--p-600); }
+.nstar { position: relative; width: 64px; height: 64px; display: grid; place-items: center; }
+.nstar svg { position: absolute; inset: 0; }
+.nstar svg rect { fill: var(--p-50); stroke: var(--p-300); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.nstar b { position: relative; font-size: 1.375rem; color: var(--p-700); }
+.ncard .nm { color: var(--muted); font-size: 0.875rem; }
+.ncard > b { line-height: 1.6; }
+.ncard:hover > b { color: var(--p-700); }
+@media (max-width: 640px) { .ncards { grid-template-columns: 1fr; } }
+
+/* ── الفرص ── */
+.opp { clip-path: var(--chamfer-shape); border: 0; border-top: 3px solid var(--accent); }
+.opp-empty { border-radius: 0; }
+
+/* ── صفحة الإصدار: نجمة تنفتح خلف الغلاف ── */
+.pub-cover { position: relative; padding: var(--s-6); }
+.ostar { display: none; }
+.pub-cover { background: var(--p-50); clip-path: var(--chamfer-shape); }
+html.motion .pub-cover { animation: unfold-frame var(--dur-scene) var(--ease-out) both; }
+@keyframes unfold-frame { from { clip-path: polygon(50% 0, 50% 0, 100% 50%, 100% 50%, 50% 100%, 50% 100%, 0 50%, 0 50%); } }
+.ostar svg { width: 100%; height: 100%; overflow: visible; }
+.ostar rect { fill: var(--p-50); stroke: var(--p-200); stroke-width: 1.2; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; }
+html.motion .ostar svg { animation: unfold var(--dur-scene) var(--ease-out) both; }
+@keyframes unfold { from { transform: rotate(45deg) scale(.7); opacity: 0; } to { transform: none; opacity: 1; } }
+.pub-cover > div, .pub-cover .cover { position: relative; }
+.pub-cover .cover { box-shadow: var(--shadow-2); }
+.access { clip-path: var(--chamfer-shape); border: 0; border-inline-start: 4px solid var(--avail-c); border-radius: 0; }
+.cite, .request { clip-path: var(--chamfer-shape); border-radius: 0; }
+.related { background: var(--surface); }
+.rel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); }
+.rel { position: relative; isolation: isolate; display: grid; gap: var(--s-2); text-decoration: none; color: var(--text); padding: var(--s-4); }
+.rel::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--p-50); clip-path: var(--chamfer-shape); box-shadow: inset 0 3px 0 var(--avail-c); }
+.rel .cover { clip-path: polygon(10% 0, 90% 0, 100% 7%, 100% 93%, 90% 100%, 10% 100%, 0 93%, 0 7%); }
+.rel .rel-k { color: var(--p-700); font-size: 0.8125rem; font-weight: 700; }
+.rel b { line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 960px) { .rel-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .panel { padding: var(--s-6) var(--s-5) var(--s-5); } .hero h1 { font-size: var(--fs-lg); } }
+
+.lrow:focus-visible, .otile:focus-visible, .ncard:focus-visible, .rel:focus-visible { box-shadow: none; outline: 3px solid var(--p-600); outline-offset: 3px; }
