@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>خمسة اتجاهات لموقع المركز · TheTeam</title>
+<title>الاتجاه المختار لموقع المركز · TheTeam</title>
 <style>
 @font-face{font-family:'Almarai';src:url(_shots/Almarai-Regular.ttf) format('truetype');font-weight:400;font-display:swap}
 @font-face{font-family:'Almarai';src:url(_shots/Almarai-ExtraBold.ttf) format('truetype');font-weight:700 900;font-display:swap}
@@ -34,23 +34,18 @@ header{display:flex;justify-content:space-between;align-items:center;gap:16px}
 h1{font-size:clamp(30px,4.4vw,52px);font-weight:800;color:var(--ink);line-height:1.15;margin:12px 0 10px}
 .hero p{font-size:clamp(15px,1.6vw,18px);color:var(--body)}
 
-.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
-.card{grid-column:span 2;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
-  display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(30,20,40,.04);
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  display:grid;grid-template-columns:3fr 2fr;box-shadow:0 1px 2px rgba(30,20,40,.04);
   transition:transform .25s var(--ease-out),box-shadow .25s var(--ease-out),border-color .25s ease;
-  animation:rise .7s var(--ease-out) both;animation-delay:calc(var(--i) * 70ms + 120ms)}
-.card:nth-child(4),.card:nth-child(5){grid-column:span 3}
+  animation:rise .7s var(--ease-out) both;animation-delay:120ms}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.shot{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:#f1efea;border-bottom:1px solid var(--line)}
+.shot{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:#f1efea;border-left:1px solid var(--line)}
 .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s var(--ease-out)}
-.shot .no{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.94);
-  color:var(--mag);font-family:'Rubik';font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 14px rgba(0,0,0,.12)}
-.info{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.info{padding:32px 32px 30px;display:flex;flex-direction:column;justify-content:center;gap:12px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.info h2{font-size:21px;font-weight:800;color:var(--ink)}
+.info h2{font-size:28px;font-weight:800;color:var(--ink)}
 .tag{background:var(--soft);color:var(--purple);font-weight:800;font-size:12px;padding:4px 12px;border-radius:20px;white-space:nowrap}
-.info p{font-size:15px;line-height:1.65;color:var(--body);flex:1}
+.info p{font-size:16px;line-height:1.7;color:var(--body)}
 .acts{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;padding:10px 18px;border-radius:12px;
   transition:background-color .2s ease,color .2s ease,border-color .2s ease,transform .12s ease}
@@ -70,15 +65,14 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-si
   .btn.pri:hover{background:var(--mag)}
   .btn.sec:hover{border-color:var(--ink)}
 }
-@media (max-width:980px){
-  .grid{grid-template-columns:1fr 1fr}
-  .card,.card:nth-child(4),.card:nth-child(5){grid-column:span 1}
-  .card:nth-child(5){grid-column:span 2}
+@media (max-width:860px){
+  .card{grid-template-columns:1fr}
+  .shot{border-left:0;border-bottom:1px solid var(--line)}
+  .info{padding:20px 20px 22px}
+  .info h2{font-size:23px}
 }
 @media (max-width:640px){
   .wrap{padding:20px 16px 40px}
-  .grid{grid-template-columns:1fr}
-  .card,.card:nth-child(4),.card:nth-child(5){grid-column:span 1}
   .client{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -105,51 +99,19 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-si
   </header>
 
   <section class="hero">
-    <div class="eyebrow"><span class="dash"></span>نماذج حية بمحتوى المركز</div>
-    <h1>خمسة اتجاهات لموقع المركز</h1>
-    <p>اختاروا اتجاهاً وتصفّحوا الموقع به.</p>
+    <div class="eyebrow"><span class="dash"></span>نموذج حي بمحتوى المركز</div>
+    <h1>الاتجاه المختار لموقع المركز</h1>
+    <p>تصفّحوا الموقع بالاتجاه الذي اختاره المركز.</p>
     <a class="newlink" href="library/">الجديد: المكتبة الرسمية بالأزرق، أربعة اقتراحات ←</a>
   </section>
 
-  <main class="grid">
-    <article class="card" style="--i:0">
-      <a class="shot" href="d1/index.html" aria-label="افتح موقع المكتبة الرسمية"><img src="_shots/d1.jpg" alt="الصفحة الرئيسية لاتجاه المكتبة الرسمية" loading="eager"><span class="no">1</span></a>
+  <main>
+    <article class="card">
+      <a class="shot" href="d1/index.html" aria-label="افتح موقع المكتبة الرسمية"><img src="_shots/d1.jpg" alt="الصفحة الرئيسية لاتجاه المكتبة الرسمية" loading="eager"></a>
       <div class="info">
         <div class="top"><h2>المكتبة الرسمية</h2><span class="tag">هادئ ومؤسسي</span></div>
         <p>البحث في الواجهة، ثم أحدث الإصدارات والأخبار.</p>
         <div class="acts"><a class="btn pri" href="d1/index.html">افتح الموقع ←</a><a class="btn sec" href="d1/publication.html">صفحة دراسة</a></div>
-      </div>
-    </article>
-    <article class="card" style="--i:1">
-      <a class="shot" href="d2/index.html" aria-label="افتح موقع المجلة البحثية"><img src="_shots/d2.jpg" alt="الصفحة الرئيسية لاتجاه المجلة البحثية" loading="eager"><span class="no">2</span></a>
-      <div class="info">
-        <div class="top"><h2>المجلة البحثية</h2><span class="tag">تحريري وثقافي</span></div>
-        <p>مجلة رصينة: قصة رئيسية والعدد الجديد من «مستقبليات تربوية».</p>
-        <div class="acts"><a class="btn pri" href="d2/index.html">افتح الموقع ←</a><a class="btn sec" href="d2/publication.html">صفحة دراسة</a></div>
-      </div>
-    </article>
-    <article class="card" style="--i:2">
-      <a class="shot" href="d3/index.html" aria-label="افتح موقع الخليجي الرسمي الفاخر"><img src="_shots/d3.jpg" alt="الصفحة الرئيسية لاتجاه الخليجي الرسمي الفاخر" loading="eager"><span class="no">3</span></a>
-      <div class="info">
-        <div class="top"><h2>الخليجي الرسمي الفاخر</h2><span class="tag">هيبة وهوية</span></div>
-        <p>ألوان شعار المركز، ونقشة النجمة الثمانية، والأقواس الخليجية.</p>
-        <div class="acts"><a class="btn pri" href="d3/index.html">افتح الموقع ←</a><a class="btn sec" href="d3/publication.html">صفحة دراسة</a></div>
-      </div>
-    </article>
-    <article class="card" style="--i:3">
-      <a class="shot" href="d4/index.html" aria-label="افتح موقع مركز المعرفة التفاعلي"><img src="_shots/d4.jpg" alt="الصفحة الرئيسية لاتجاه مركز المعرفة التفاعلي" loading="lazy"><span class="no">4</span></a>
-      <div class="info">
-        <div class="top"><h2>مركز المعرفة التفاعلي</h2><span class="tag">تحليلي وحديث</span></div>
-        <p>خريطة الدول الأعضاء ومستكشف للإصدارات بالفلاتر.</p>
-        <div class="acts"><a class="btn pri" href="d4/index.html">افتح الموقع ←</a><a class="btn sec" href="d4/publication.html">صفحة دراسة</a></div>
-      </div>
-    </article>
-    <article class="card" style="--i:4">
-      <a class="shot" href="d5/index.html" aria-label="افتح موقع التجربة الغامرة"><img src="_shots/d5.jpg" alt="الصفحة الرئيسية لاتجاه التجربة الغامرة" loading="lazy"><span class="no">5</span></a>
-      <div class="info">
-        <div class="top"><h2>التجربة الغامرة</h2><span class="tag">إبهار وحركة</span></div>
-        <p>صورة وفيديو كبيران، ثم قصة المركز بالحركة.</p>
-        <div class="acts"><a class="btn pri" href="d5/index.html">افتح الموقع ←</a><a class="btn sec" href="d5/publication.html">صفحة دراسة</a></div>
       </div>
     </article>
   </main>
