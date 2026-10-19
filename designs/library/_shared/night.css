@@ -1,4 +1,4 @@
-/* أ · ليل المكتبة — the top block is a reading room at night; the pointer carries the lamp.
+/* أ · مصباح القارئ — the top block is a reading room at night; the pointer carries the lamp.
    Depth through colour only: gradients, tinted shadows, one light layer. No box changes. */
 :root{
   --shadow-field:0 1px 2px rgb(8 16 43 / .14),0 18px 40px -16px rgb(4 9 28 / .7);

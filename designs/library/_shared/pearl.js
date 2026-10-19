@@ -1,4 +1,4 @@
-/* ب · لؤلؤ الخليج — «المدّ».
+/* ب · المد.
    Authored moment: nacre sheen in three layers, each at its own depth, drifting with the
    pointer and the scroll like light on the inside of a pearl shell. Covers surface once. */
 (() => {

@@ -69,15 +69,27 @@
   FX.isInViewport = (el) => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
   FX.onPause = (fn) => FX.resets.push(fn);
   FX.ease = (t) => 1 - Math.pow(1 - t, 3); // decelerating, for counters driven by time
+  const NF = new Intl.NumberFormat('en-US');   // Western digits (direction 1's convention) with a thousands separator
+  FX.fmt = (n) => NF.format(n);
+
+  /* missing or broken cover: swap the broken image for a blank so the cover tile shows instead */
+  const BLANK = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22/%3E';
+  const coverMissing = (img) => { if (img.dataset.fxMissing) return; img.dataset.fxMissing = '1'; img.classList.add('is-missing'); img.src = BLANK; };
+  document.querySelectorAll('.cover img, .big-cover').forEach((img) => {
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) coverMissing(img);
+    img.addEventListener('error', () => coverMissing(img));
+  });
 
   /* ── counter: final value is in the HTML; the animation only replays it ── */
   FX.count = (el, { duration = 900, delay = 0, spring = false } = {}) => {
-    const final = el.textContent.trim();
-    const target = parseInt(final.replace(/[^\d]/g, ''), 10);
+    const raw = el.textContent.trim();
+    const target = parseInt(raw.replace(/[^\d]/g, ''), 10);
+    const final = /^\d+$/.test(raw) && target >= 1000 ? FX.fmt(target) : raw;   // 1284 → 1,284
+    if (final !== raw) el.textContent = final;
     if (!Number.isFinite(target) || !FX.live) return;
     el.innerHTML = `<span class="fx-sr" data-fx>${final}</span><span aria-hidden="true" data-fx>0</span>`;
     const roll = el.lastChild;
-    const show = (v) => { roll.textContent = String(Math.round(v)); };
+    const show = (v) => { roll.textContent = FX.fmt(Math.round(v)); };
     if (spring) {
       // critically damped: numbers never overshoot (data must not lie, even for a frame)
       show(0);

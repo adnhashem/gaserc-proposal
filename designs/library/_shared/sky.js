@@ -1,4 +1,4 @@
-/* د · سماء الصباح — «الهواء».
+/* د · الهواء.
    Authored moment: on arrival the sun climbs into place (1.4 s, once); then the sky behind the
    bars brightens from dawn to mid-morning as the page moves, the sun on a slower plane.
    Cards lift into the air on springs; only covers tilt, so text never rotates. */

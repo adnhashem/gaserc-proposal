@@ -1,4 +1,4 @@
-/* أ · ليل المكتبة — «مصباح القارئ».
+/* أ · مصباح القارئ.
    Authored moment: a reading lamp follows the pointer (or the finger) over the dark hero,
    and the headline's words come out of the dark. Covers catch the same lamp light. */
 (() => {

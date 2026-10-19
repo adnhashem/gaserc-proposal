@@ -58,6 +58,22 @@ html{scrollbar-color:color-mix(in oklch, var(--ink) 28%, transparent) var(--canv
 .fx-chips-on .chip{background:var(--action);color:var(--on-action);border-color:var(--action)}
 .chips.fx-live .chip.on{background:var(--chip,var(--surface));color:var(--chip-ink,var(--ink-2));border-color:var(--line)}
 
+/* availability_status: four keys, each with its own measured pair (ok · req live in base.css) */
+.badge.restricted{background:var(--res-soft);color:var(--res)}
+.badge.print{background:var(--prn-soft);color:var(--prn)}
+/* a label that wraps keeps its dot on the first line (single-line badges render exactly as before) */
+.badge{align-items:flex-start}
+.badge::before{flex:none;margin-top:calc((1lh - 6px) / 2)}
+
+/* missing or broken cover: a cover-coloured tile with an outline book, same box, no text baked in */
+.pub .cover img.is-missing,.big-cover.is-missing,
+.pub .cover:not(:has(img))::before{
+  background:var(--fx-book) center / 36px no-repeat,linear-gradient(160deg,var(--surface),var(--cover));
+  box-shadow:var(--shadow-cover),inset 0 0 0 1px var(--line)}
+.pub .cover:not(:has(img))::before{content:"";display:block;width:132px;height:188px}
+:root{--fx-book:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237d8aa3' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E")}
+@media (max-width:900px){ .pub .cover:not(:has(img))::before{width:96px;height:137px} }
+
 /* request form states */
 .panel .fx-field-err{border-color:var(--err)!important;box-shadow:0 0 0 3px color-mix(in oklch, var(--err) 18%, transparent)!important}
 .panel .fx-msg{display:block;margin-top:8px;font-size:13px;line-height:1.6;color:var(--err);background:var(--err-soft);border-radius:var(--r);padding:8px 10px}

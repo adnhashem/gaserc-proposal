@@ -1,4 +1,4 @@
-/* ج · الأزرق الملكي — «الدقّة».
+/* ج · الدقة.
    Authored moment: the headline is written by an ink wipe in reading direction, then the
    figures roll like a mechanical counter on the cobalt band. Ink floods the type cells
    from where the pointer enters. */
@@ -23,19 +23,24 @@
 
   /* 2 · odometer: each digit rolls through 0–9 and lands; the plain number returns after */
   const odo = (b, delay) => {
-    const final = b.textContent.trim();
-    if (!FX.live || !/^\d+$/.test(final)) return;
+    const raw = b.textContent.trim();
+    if (!/^[\d,]+$/.test(raw)) return;
+    const n = +raw.replace(/,/g, '');
+    const final = n >= 1000 ? FX.fmt(n) : raw;                     // 1284 → 1,284
+    b.textContent = final;
+    if (!FX.live) return;
     const sr = document.createElement('span'); sr.className = 'fx-sr'; sr.dataset.fx = ''; sr.textContent = final;
     const wrap = document.createElement('span');
     wrap.className = 'fx-odo'; wrap.dataset.fx = ''; wrap.setAttribute('aria-hidden', 'true');
     const strips = [...final].map((d) => {
+      if (!/\d/.test(d)) { const sep = document.createElement('span'); sep.textContent = d; wrap.append(sep); return null; }
       const col = document.createElement('span'); col.className = 'fx-odo-col';
       const strip = document.createElement('span'); strip.className = 'fx-odo-strip';
       for (let i = 0; i < 20; i++) { const s = document.createElement('span'); s.textContent = i % 10; strip.append(s); }
       col.append(strip); wrap.append(col); return [strip, +d];
     });
     b.textContent = ''; b.append(sr, wrap);
-    const runs = strips.map(([strip, d], i) => strip.animate(
+    const runs = strips.filter(Boolean).map(([strip, d], i) => strip.animate(
       [{ transform: 'translateY(0)' }, { transform: `translateY(${-(10 + d) * 1.2}em)` }],
       { duration: 900 + i * 140, delay, easing: FX.EASE_OUT, fill: 'forwards' }).finished);
     const restore = () => { b.textContent = final; };
