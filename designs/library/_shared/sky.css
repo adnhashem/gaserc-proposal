@@ -1,0 +1,45 @@
+/* د · سماء الصباح — the one fully light colourway: azure ink under a morning sky that
+   brightens as the page moves; frosted bars over a controlled gradient only. No box changes. */
+:root{
+  --shadow-field:0 1px 2px rgb(9 44 79 / .05),0 18px 40px -18px rgb(1 100 180 / .40);
+  --shadow-card:0 1px 2px rgb(9 44 79 / .04),0 14px 32px -18px rgb(1 100 180 / .28);
+  --shadow-card-hover:0 6px 14px -6px rgb(9 44 79 / .10),0 34px 56px -24px rgb(1 100 180 / .42);
+  --shadow-cover:0 14px 28px -14px rgb(9 44 79 / .45);
+  --shadow-big:0 30px 60px -28px rgb(1 100 180 / .5);
+  --glass:oklch(1 0 0 / .74);
+  --glare:oklch(1 0 0 / .65);
+}
+.fx-sky{left:0;top:0;width:100%;z-index:-1}
+.fx-sky>i{position:absolute;inset:0}
+.fx-sky .dawn{background:linear-gradient(180deg,oklch(0.85 0.08 246) 0%,oklch(0.93 0.045 240) 42%,var(--canvas) 100%)}
+.fx-sky .day{opacity:0;background:linear-gradient(180deg,oklch(0.78 0.12 248) 0%,oklch(0.90 0.065 242) 42%,var(--canvas) 100%);will-change:opacity}
+.fx-sky .sun{inset:auto;width:900px;height:900px;top:-330px;left:56%;border-radius:50%;
+  background:radial-gradient(closest-side,oklch(1 0.01 225 / .97),oklch(0.975 0.03 232 / .5) 42%,transparent);will-change:transform,opacity}
+
+/* frosted bars, measured against the darkest sky stop */
+.util,.head,.stats{background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4)}
+.util{border-bottom-color:oklch(1 0 0 / .5)}
+.head{border-bottom-color:oklch(0.85 0.04 242 / .55)}
+.stats{border-block-color:oklch(0.85 0.04 242 / .55)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .util,.head,.stats{background:var(--surface)}
+}
+@media (prefers-reduced-transparency:reduce){
+  .util,.head,.stats{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+
+/* a second sky mid-page: news + opportunities (home), related publications (study page) */
+section.block.band{background:linear-gradient(180deg,oklch(0.885 0.065 245) 0%,oklch(0.95 0.032 240) 46%,var(--surface) 100%);border-top-color:transparent}
+section.block.band .pub,section.block.band .opp{box-shadow:var(--shadow-card)}
+.hero{background:transparent}
+
+/* cards lift into the air as a whole */
+.pub{transition:box-shadow var(--dur-move) var(--ease-out),border-color var(--dur-hover) ease}
+.pub .cover{background:linear-gradient(180deg,var(--cover),oklch(0.985 0.01 238))}
+.fx-glare{background:radial-gradient(circle at var(--gx,50%) var(--gy,20%),var(--glare),transparent 50%);
+  mix-blend-mode:soft-light;opacity:0;transition:opacity var(--dur-hover) ease}
+.pub:hover .fx-glare,.pub-page>div:first-child:hover .fx-glare{opacity:1}
+.opp{box-shadow:var(--shadow-card)}
+
+.foot{background:linear-gradient(180deg,var(--foot),oklch(0.965 0.016 240))}
+@media (max-width:900px){ .fx-sky .sun{width:520px;height:520px;top:-220px;left:40%} }

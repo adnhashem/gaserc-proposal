@@ -1,0 +1,48 @@
+/* ج · الأزرق الملكي — near-white body, saturated cobalt fields, a cobalt-night footer.
+   Precision: crisp short shadows, ink that floods, numbers that roll. No box changes. */
+:root{
+  --shadow-field:0 1px 0 rgb(24 74 210 / .10),0 14px 30px -16px rgb(24 74 210 / .45);
+  --shadow-card:0 1px 0 rgb(17 24 40 / .05),0 8px 18px -12px rgb(24 74 210 / .26);
+  --shadow-card-hover:0 1px 0 rgb(17 24 40 / .06),0 16px 30px -14px rgb(24 74 210 / .42);
+  --shadow-cover:0 10px 20px -10px rgb(16 30 90 / .50);
+  --shadow-big:0 24px 44px -22px rgb(16 30 90 / .55);
+  --ink-flood:var(--action);
+}
+.head{border-bottom-color:var(--line)}
+.hero{background:linear-gradient(180deg,var(--surface) 0%,oklch(0.962 0.017 264) 100%)}
+
+/* cobalt fields: the figures band and the opportunity card */
+.stats{background:linear-gradient(180deg,oklch(0.42 0.175 265),oklch(0.365 0.155 266));border-block-color:transparent;
+  box-shadow:inset 0 1px 0 oklch(1 0 0 / .16),inset 0 -1px 0 oklch(0 0 0 / .12)}
+.stat{border-inline-start-color:oklch(1 0 0 / .16)}
+.opp{background:linear-gradient(165deg,oklch(0.45 0.185 264),oklch(0.38 0.165 266));border-color:transparent;
+  box-shadow:0 22px 44px -22px oklch(0.40 0.20 265 / .7)}
+.opp .deadline{border-top-color:oklch(1 0 0 / .18)}
+
+/* crisp cards: the border turns cobalt on hover */
+.pub .cover{background:linear-gradient(180deg,var(--cover),var(--surface))}
+@media (hover:hover) and (pointer:fine){ .pub:hover{border-color:var(--action)} }
+
+/* browse by type: ink floods from where the pointer enters */
+.types a{position:relative;overflow:hidden}
+.types a>b,.types a>span{position:relative;z-index:1;transition:color var(--dur-hover) ease}
+.fx-ink{inset:0;background:var(--ink-flood);clip-path:circle(0px at var(--ix,50%) var(--iy,50%))}
+.types a.is-ink>b,.types a.is-ink>span{color:var(--on-action)}
+
+/* mid-page: a pale cobalt band (news + opportunities, related publications) */
+section.block.band{background:linear-gradient(180deg,oklch(0.955 0.024 264),var(--surface) 70%)}
+
+/* footer */
+.foot{background:linear-gradient(180deg,oklch(0.29 0.12 265),var(--canvas) 70%);border-top-color:transparent}
+.foot .legal{border-top-color:oklch(1 0 0 / .12)}
+
+/* odometer: digit columns live only while rolling, then the plain number returns */
+.fx-odo{display:inline-flex;vertical-align:top;height:1.2em;overflow:hidden;direction:ltr;unicode-bidi:isolate}
+.stat .fx-odo,.stat .fx-odo span{font-size:inherit;color:inherit;font-weight:inherit}
+.fx-odo-col{display:block;height:1.2em;overflow:hidden}
+.fx-odo-strip{display:block}
+.fx-odo-strip>span{display:block;height:1.2em;line-height:1.2em}
+
+.fx-ink{transition:clip-path var(--dur-move) var(--ease-out)}
+.types a.is-ink .fx-ink{clip-path:circle(150% at var(--ix,50%) var(--iy,50%))}
+@media (prefers-reduced-motion:reduce){ .fx-ink{transition:none} }

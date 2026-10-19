@@ -4,49 +4,63 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>المكتبة الرسمية بالأزرق: أربعة اتجاهات · TheTeam</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Rubik:wght@500;700&display=swap">
+<title>المكتبة الرسمية بالأزرق · TheTeam</title>
 <style>
-:root{--ink:#0D1A33;--body:#3A4660;--muted:#4A5876;--line:#DDE3EE;--bg:#F5F8FC;--blue:#1F4FA8;--blue-50:#EAF0FA;--ease-out:cubic-bezier(0.23,1,0.32,1)}
+@font-face{font-family:'Almarai';src:url(../_shots/Almarai-Regular.ttf) format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Almarai';src:url(../_shots/Almarai-ExtraBold.ttf) format('truetype');font-weight:700 900;font-display:swap}
+@font-face{font-family:'Rubik';src:url(../_shots/Rubik-VariableFont_wght.ttf) format('truetype');font-weight:300 900;font-display:swap}
+:root{
+  --ink:#0d1b33;--body:#33405a;--muted:#5e6a80;--line:#dfe5ef;--bg:#f6f8fc;--card:#fff;--blue:#1a4fd0;--soft:#eef3fc;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;color:var(--body);background:var(--bg);-webkit-font-smoothing:antialiased}
+html{font-family:'Almarai',system-ui,sans-serif;color:var(--body);background:var(--bg);-webkit-font-smoothing:antialiased}
+body{background:var(--bg);min-height:100vh}
 a{color:inherit;text-decoration:none}
+::selection{background:var(--blue);color:#fff}
 .wrap{max-width:1240px;margin:0 auto;padding:28px 24px 56px}
 header{display:flex;justify-content:space-between;align-items:center;gap:16px}
 .brand{display:flex;align-items:center;gap:9px}
-.brand .wm{line-height:.84;font-family:Rubik,sans-serif;text-align:left}.brand .the{font-size:11px;color:#b7b7b7}.brand .team{font-size:20px;color:#9c9c9c}
-.client{font-size:13px;color:var(--muted);font-weight:700}
+.brand .wm{line-height:.84;font-family:'Rubik',sans-serif;text-align:left}
+.brand .the{font-size:11px;color:#9aa3b2;font-weight:300}
+.brand .team{font-size:20px;color:#7f8898;font-weight:300}
+.back{font-size:14px;font-weight:700;color:var(--blue);border-bottom:1px solid #b9c9ee;padding-bottom:2px}
 .hero{margin:44px 0 30px;max-width:760px}
-.hero p.k{color:var(--blue);font-weight:700;font-size:14px}
-h1{font-size:clamp(30px,4.2vw,48px);color:var(--ink);line-height:1.2;margin:10px 0}
-.hero p.l{font-size:clamp(15px,1.6vw,18px);line-height:1.8}
+h1{font-size:clamp(30px,4.4vw,52px);font-weight:800;color:var(--ink);line-height:1.15;margin-bottom:12px}
+.hero p{font-size:clamp(15px,1.6vw,18px);line-height:1.8}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:820px){.grid{grid-template-columns:1fr}}
-.vcard{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
-  transition:transform .25s var(--ease-out),box-shadow .25s var(--ease-out);animation:rise .7s var(--ease-out) both;animation-delay:calc(var(--i)*80ms + 100ms)}
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.shot{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:#EEF2F8;border-bottom:1px solid var(--line)}
-.shot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s var(--ease-out)}
-.no{position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.95);color:var(--blue);font-weight:700;font-size:20px;display:grid;place-items:center;box-shadow:0 4px 14px rgba(13,26,51,.15)}
-.info{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 1px 2px rgb(13 27 51 / .05),0 16px 32px -24px rgb(26 79 208 / .35);
+  transition:transform .28s var(--ease-out),box-shadow .28s var(--ease-out),border-color .2s ease}
+.shot{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:#e9eef7;border-bottom:1px solid var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s var(--ease-out)}
+.no{position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:12px;background:rgb(255 255 255 / .95);color:var(--ink);
+  font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgb(0 0 0 / .14)}
+.info{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.info h2{font-size:22px;color:var(--ink)}
-.tag{background:var(--blue-50);color:var(--blue);font-weight:700;font-size:12px;padding:4px 12px;border-radius:20px}
+.info h2{font-size:22px;font-weight:800;color:var(--ink)}
+.tag{background:var(--soft);color:var(--blue);font-weight:800;font-size:12.5px;padding:4px 12px;border-radius:20px;white-space:nowrap}
 .info p{font-size:15px;line-height:1.75;flex:1}
-.acts{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
-.b{display:inline-flex;align-items:center;font-weight:700;font-size:14px;padding:10px 18px;border-radius:10px;transition:background-color .2s ease,border-color .2s ease}
-.b.pri{background:var(--ink);color:#fff}.b.sec{border:1px solid var(--line);background:#fff;color:var(--ink)}
-.b:focus-visible,.shot:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.notes{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:820px){.notes{grid-template-columns:1fr}}
-.note{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;font-size:14.5px;line-height:1.85}
-.note h3{font-size:16px;color:var(--ink);margin-bottom:6px}
-.note code{font-family:Rubik,monospace;background:var(--blue-50);color:var(--blue);padding:1px 6px;border-radius:6px;font-size:13px}
-footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-footer a{text-decoration:underline}
-@media(hover:hover) and (pointer:fine){.vcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(13,26,51,.10)}.vcard:hover .shot img{transform:scale(1.03)}.b.pri:hover{background:var(--blue)}.b.sec:hover{border-color:var(--ink)}}
-@media(prefers-reduced-motion:reduce){.vcard{animation:none}.vcard,.shot img{transition:none}}
+.sw{display:flex;gap:6px}
+.sw i{width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 1px rgb(13 27 51 / .12)}
+.acts{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;padding:10px 18px;border-radius:12px;min-height:44px;
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease,transform .16s var(--ease-out)}
+.btn.pri{background:var(--c,var(--ink));color:#fff}
+.btn.sec{border:1px solid var(--line);color:var(--ink);background:#fff}
+.btn:active{transform:scale(.97)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.note{margin-top:28px;font-size:14.5px;line-height:1.8;color:var(--muted);max-width:820px}
+footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (hover:hover) and (pointer:fine){
+  .card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgb(13 27 51 / .06),0 28px 48px -26px rgb(26 79 208 / .5);border-color:#cdd8ee}
+  .card:hover .shot img{transform:scale(1.03)}
+  .btn.pri:hover{background:var(--ink)}
+  .btn.sec:hover{border-color:var(--ink)}
+}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+@media (max-width:640px){.wrap{padding:20px 16px 40px}}
+@media (prefers-reduced-motion:reduce){.card,.shot img,.btn{transition:none}.card:hover,.card:hover .shot img{transform:none}}
 </style>
 </head>
 <body>
@@ -61,39 +75,59 @@ footer a{text-decoration:underline}
       </svg>
       <div class="wm"><div class="the">The</div><div class="team">Team</div></div>
     </div>
-    <div class="client">المركز العربي للبحوث التربوية لدول الخليج</div>
+    <a class="back" href="../">صفحة التصاميم</a>
   </header>
+
   <section class="hero">
-    <p class="k">الاتجاه المختار: المكتبة الرسمية</p>
-    <h1>المكتبة الرسمية بالأزرق، أربعة اقتراحات</h1>
-    <p class="l">نفس الهيكل ونفس المحتوى الحقيقي، وكل اقتراح بدرجة أزرق وخطّ وحركة مختلفة. افتحوا أي اتجاه وجرّبوا البحث فيه.</p>
+    <h1>المكتبة الرسمية بالأزرق</h1>
+    <p>نفس تصميم المكتبة الرسمية الذي اختاره المركز، بأربعة ألوان زرقاء، ولكل لون حركته. حرّكوا المؤشر فوق الصفحة الرئيسية وعلى الأغلفة.</p>
   </section>
-  <main class="grid"><article class="vcard" style="--i:0">
-  <a class="shot" href="ink/index.html" aria-label="افتح الاتجاه أ: الحبر الكحلي"><img src="_shots/ink.jpg" alt="الصفحة الرئيسية لاتجاه الحبر الكحلي"><span class="no">أ</span></a>
-  <div class="info"><div class="top"><h2>الحبر الكحلي</h2><span class="tag">رسمي · كثيف · واثق</span></div>
-    <p>جدار أغلفة يتجاوب مع البحث: تكتب فتتقدّم الأغلفة المطابقة وتتراجع البقية.</p>
-    <div class="acts"><a class="b pri" href="ink/index.html">افتح الموقع ←</a><a class="b sec" href="ink/publication.html">صفحة دراسة</a></div></div>
-</article><article class="vcard" style="--i:1">
-  <a class="shot" href="gulf/index.html" aria-label="افتح الاتجاه ب: أزرق الخليج"><img src="_shots/gulf.jpg" alt="الصفحة الرئيسية لاتجاه أزرق الخليج"><span class="no">ب</span></a>
-  <div class="info"><div class="top"><h2>أزرق الخليج</h2><span class="tag">هادئ · بحري · منفتح</span></div>
-    <p>موجات تتنفّس تحت البحث وترتفع حيث المؤشر، ورفّ إصدارات يُسحب أفقياً.</p>
-    <div class="acts"><a class="b pri" href="gulf/index.html">افتح الموقع ←</a><a class="b sec" href="gulf/publication.html">صفحة دراسة</a></div></div>
-</article><article class="vcard" style="--i:2">
-  <a class="shot" href="lapis/index.html" aria-label="افتح الاتجاه ج: اللازورد الهندسي"><img src="_shots/lapis.jpg" alt="الصفحة الرئيسية لاتجاه اللازورد الهندسي"><span class="no">ج</span></a>
-  <div class="info"><div class="top"><h2>اللازورد الهندسي</h2><span class="tag">هندسي · تراثي · دقيق</span></div>
-    <p>حقل من النجوم الثمانية يدور ويتلوّن قرب المؤشر، وينفتح حول البحث.</p>
-    <div class="acts"><a class="b pri" href="lapis/index.html">افتح الموقع ←</a><a class="b sec" href="lapis/publication.html">صفحة دراسة</a></div></div>
-</article><article class="vcard" style="--i:3">
-  <a class="shot" href="shelf/index.html" aria-label="افتح الاتجاه د: الرفّ الحيّ"><img src="_shots/shelf.jpg" alt="الصفحة الرئيسية لاتجاه الرفّ الحيّ"><span class="no">د</span></a>
-  <div class="info"><div class="top"><h2>الرفّ الحيّ</h2><span class="tag">بياني · مضيء · دقيق</span></div>
-    <p>179 كعب كتاب بسنواتها الحقيقية؛ الفلتر يعيد تلوينها والبحث يضيء المطابق.</p>
-    <div class="acts"><a class="b pri" href="shelf/index.html">افتح الموقع ←</a><a class="b sec" href="shelf/publication.html">صفحة دراسة</a></div></div>
-</article></main>
-  <section class="notes">
-    <div class="note"><h3>جرّبوا في كل اتجاه</h3>اكتبوا كلمة في البحث مثل «المعلم» أو «التقويم» وشاهدوا الصفحة تتجاوب، ثم مرّروا المؤشر على الصورة الكبيرة. زرّ «إيقاف الحركة» أعلى كل صفحة يوقف الحركة كلها.</div>
-    <div class="note"><h3>الحالات</h3>الرئيسية: أضيفوا <code>?state=empty</code> أو <code>?state=loading</code> أو <code>?state=error</code>. صفحة الدراسة: <code>?access=downloadable</code> أو <code>print_only</code> أو <code>on_request</code> أو <code>restricted</code>.</div>
-  </section>
-  <footer><span>نماذج تصميم مقترحة من TheTeam، وليست موقع المركز الرسمي. الإصدارات والأغلفة من موقع المركز، وحالة الإتاحة توضيحية.</span><a href="../">الاتجاه المختار</a></footer>
+
+  <main class="grid">
+    <article class="card" style="--c:#192967">
+      <a class="shot" href="night/index.html" aria-label="افتح الاقتراح أ: ليل المكتبة"><img src="_shots/night.jpg" alt="الصفحة الرئيسية لاقتراح ليل المكتبة" loading="eager"><span class="no">أ</span></a>
+      <div class="info">
+        <div class="top"><h2>ليل المكتبة</h2><span class="tag">مصباح القارئ</span></div>
+        <p>أعلى الصفحة بلون الليل، ومصباح يتبع المؤشر فوق البحث وتلتقط الأغلفة ضوءه، والليل يعود في شريط الأخبار.</p>
+        <div class="sw" role="img" aria-label="ألوان الاقتراح"><i style="background:#08102B"></i><i style="background:#192967"></i><i style="background:#1161BB"></i><i style="background:#78C7FD"></i><i style="background:#F5F7FB"></i></div>
+        <div class="acts"><a class="btn pri" href="night/index.html">افتح الرئيسية ←</a><a class="btn sec" href="night/publication.html">صفحة دراسة</a></div>
+      </div>
+    </article>
+    <article class="card" style="--c:#084877">
+      <a class="shot" href="pearl/index.html" aria-label="افتح الاقتراح ب: لؤلؤ الخليج"><img src="_shots/pearl.jpg" alt="الصفحة الرئيسية لاقتراح لؤلؤ الخليج" loading="eager"><span class="no">ب</span></a>
+      <div class="info">
+        <div class="top"><h2>لؤلؤ الخليج</h2><span class="tag">المدّ</span></div>
+        <p>صفحة بلون الصدف وشريط أرقام بلون البحر، ولمعة لؤلؤ تتحرك بعمق مع المؤشر والتمرير، وشريط صدف في وسط الصفحة.</p>
+        <div class="sw" role="img" aria-label="ألوان الاقتراح"><i style="background:#013053"></i><i style="background:#084877"></i><i style="background:#02669F"></i><i style="background:#9BDCF6"></i><i style="background:#F2F9FC"></i></div>
+        <div class="acts"><a class="btn pri" href="pearl/index.html">افتح الرئيسية ←</a><a class="btn sec" href="pearl/publication.html">صفحة دراسة</a></div>
+      </div>
+    </article>
+    <article class="card" style="--c:#184AD2">
+      <a class="shot" href="royal/index.html" aria-label="افتح الاقتراح ج: الأزرق الملكي"><img src="_shots/royal.jpg" alt="الصفحة الرئيسية لاقتراح الأزرق الملكي" loading="lazy"><span class="no">ج</span></a>
+      <div class="info">
+        <div class="top"><h2>الأزرق الملكي</h2><span class="tag">الدقّة</span></div>
+        <p>أبيض صافٍ وحقول كوبالت. العنوان يُكتب بمسحة حبر، والأرقام تدور كالعدّاد، والحبر يفيض في خانات «تصفّح حسب النوع».</p>
+        <div class="sw" role="img" aria-label="ألوان الاقتراح"><i style="background:#09194E"></i><i style="background:#184AD2"></i><i style="background:#D7EAFE"></i><i style="background:#EAEFF7"></i><i style="background:#F9FAFC"></i></div>
+        <div class="acts"><a class="btn pri" href="royal/index.html">افتح الرئيسية ←</a><a class="btn sec" href="royal/publication.html">صفحة دراسة</a></div>
+      </div>
+    </article>
+    <article class="card" style="--c:#0164B4">
+      <a class="shot" href="sky/index.html" aria-label="افتح الاقتراح د: سماء الصباح"><img src="_shots/sky.jpg" alt="الصفحة الرئيسية لاقتراح سماء الصباح" loading="lazy"><span class="no">د</span></a>
+      <div class="info">
+        <div class="top"><h2>سماء الصباح</h2><span class="tag">الهواء</span></div>
+        <p>فاتح بالكامل: شروق عند الوصول، وسماء تصفو مع التمرير، وسماء ثانية في وسط الصفحة، وأغلفة تميل بنابض خفيف.</p>
+        <div class="sw" role="img" aria-label="ألوان الاقتراح"><i style="background:#092C4F"></i><i style="background:#0164B4"></i><i style="background:#238DD4"></i><i style="background:#D8EDFC"></i><i style="background:#F4FAFE"></i></div>
+        <div class="acts"><a class="btn pri" href="sky/index.html">افتح الرئيسية ←</a><a class="btn sec" href="sky/publication.html">صفحة دراسة</a></div>
+      </div>
+    </article>
+  </main>
+
+  <p class="note">التخطيط والخطوط والنصوص في الاقتراحات الأربعة مطابقة للمكتبة الرسمية، والمتغيّر هو الألوان والحركة فقط. في كل صفحة زرّ «إيقاف الحركة» أسفلها.</p>
+
+  <footer>
+    <span>نماذج تصميم مقترحة من TheTeam، وليست موقع المركز الرسمي.</span>
+    <span dir="ltr">theteamkw.com</span>
+  </footer>
 </div>
 </body>
 </html>

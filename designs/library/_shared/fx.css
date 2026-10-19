@@ -1,0 +1,100 @@
+/* Shared interaction layer for the four colourways: feedback, focus, states, browser surfaces.
+   Never changes a box: only colour, shadow, transform and opacity. */
+:root{
+  --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out:cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer:cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press:160ms; --dur-hover:200ms; --dur-move:260ms; --dur-enter:700ms;
+  --stagger:60ms; --press-scale:.97; --focus-offset:2px; --disabled-opacity:.45;
+  --shadow-field-focus:0 0 0 4px color-mix(in oklch, var(--focus) 28%, transparent);
+  --shadow-card:none; --shadow-card-hover:none;
+}
+
+/* browser surfaces carry the palette */
+::selection{background:var(--action);color:var(--on-action)}
+.search input,.panel input{caret-color:var(--focus)}
+html{scrollbar-color:color-mix(in oklch, var(--ink) 28%, transparent) var(--canvas)}
+.num{font-variant-numeric:tabular-nums}
+
+/* focus */
+:focus-visible{outline:2px solid var(--focus);outline-offset:var(--focus-offset)}
+.search input:focus-visible{outline:0}
+.search{transition:border-color var(--dur-hover) ease,box-shadow var(--dur-hover) ease}
+.search:focus-within{border-color:var(--focus);box-shadow:var(--shadow-field),var(--shadow-field-focus)}
+.panel input::placeholder{color:var(--placeholder)}
+.panel input,.panel select{transition:border-color var(--dur-hover) ease,box-shadow var(--dur-hover) ease}
+.panel input:focus-visible,.panel select:focus-visible{outline:0;border-color:var(--focus);box-shadow:var(--shadow-field-focus)}
+
+/* the mobile menu button takes the zone's colours instead of the browser's default grey */
+.menu{background:var(--surface);color:var(--ink)}
+
+/* press feedback — every pressable surface */
+.btn,.chip,.menu{transition:transform var(--dur-press) var(--ease-out),background-color var(--dur-hover) ease,color var(--dur-hover) ease,border-color var(--dur-hover) ease,box-shadow var(--dur-hover) ease}
+.btn:active,.chip:active,.menu:active{transform:scale(var(--press-scale))}
+.btn[aria-disabled="true"],.btn:disabled{opacity:var(--disabled-opacity);cursor:not-allowed}
+.btn[aria-busy="true"]{cursor:progress}
+.search .btn{transition:transform var(--dur-press) var(--ease-out),background-color var(--dur-hover) ease}
+
+/* depth on cards */
+.pub{box-shadow:var(--shadow-card);transition:box-shadow var(--dur-move) var(--ease-out),border-color var(--dur-hover) ease,transform var(--dur-move) var(--ease-out)}
+.pub h3,.news-item h3,.types b,.nav a,.popular a,.more,.foot li,.crumbs a{transition:color var(--dur-hover) ease,border-color var(--dur-hover) ease}
+
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--action-hover)}
+  .search .btn:hover{background:var(--field-action-hover,var(--action-hover))}
+  .btn.ghost:hover{background:transparent;border-color:var(--accent-line);color:var(--accent)}
+  .nav a:not(.on):hover{color:var(--ink);border-color:var(--line)}
+  .popular a:hover{border-color:var(--accent-line)}
+  .more:hover{color:var(--accent)}
+  .chip:hover{border-color:var(--accent-line)}
+  .pub:hover{box-shadow:var(--shadow-card-hover)}
+  .pub:hover h3,.types a:hover b,.crumbs a:hover{color:var(--accent)}
+}
+
+/* chips: active state is drawn by one clipped overlay so text and fill move together */
+.chips{position:relative}
+.fx-chips-on{position:absolute;inset:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;pointer-events:none;
+  clip-path:inset(0 100% 100% 0 round 999px)}
+.fx-chips-on .chip{background:var(--action);color:var(--on-action);border-color:var(--action)}
+.chips.fx-live .chip.on{background:var(--chip,var(--surface));color:var(--chip-ink,var(--ink-2));border-color:var(--line)}
+
+/* request form states */
+.panel .fx-field-err{border-color:var(--err)!important;box-shadow:0 0 0 3px color-mix(in oklch, var(--err) 18%, transparent)!important}
+.panel .fx-msg{display:block;margin-top:8px;font-size:13px;line-height:1.6;color:var(--err);background:var(--err-soft);border-radius:var(--r);padding:8px 10px}
+.panel .fx-done{display:block;margin-top:12px;font-size:13.5px;line-height:1.7;color:var(--ok);background:var(--ok-soft);border-radius:var(--r);padding:10px 12px}
+.fx-swap{display:inline-block;transition:opacity var(--dur-hover) ease,filter var(--dur-hover) ease}
+.fx-swap.is-out{opacity:0;filter:blur(2px)}
+
+/* the real value for assistive tech while a counter rolls */
+.fx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* effect layers sit under content */
+.fx-layer{position:absolute;pointer-events:none;z-index:0}
+.hero>.wrap{position:relative;z-index:1}
+
+/* prototype bar (prototype chrome, not part of the site) */
+.proto-pill{position:fixed;bottom:12px;left:12px;z-index:9999;display:flex;align-items:center;gap:10px;flex-wrap:wrap;max-width:calc(100vw - 24px);
+  font:500 12.5px/1.4 "IBM Plex Sans Arabic",system-ui,sans-serif;background:rgb(10 18 44 / .92);color:#fff;padding:6px 6px 6px 14px;border-radius:999px;direction:rtl;
+  box-shadow:0 8px 24px -10px rgb(10 18 44 / .5)}
+.proto-pill b{font-weight:600}
+.proto-pill a{color:#9FD0FF;text-decoration:underline;text-underline-offset:3px}
+.proto-pill button{font:inherit;font-weight:600;color:#0A122C;background:#E6F1FF;border:0;border-radius:999px;padding:5px 12px;cursor:pointer;
+  min-height:28px;transition:transform var(--dur-press) var(--ease-out),background-color var(--dur-hover) ease}
+.proto-pill button:active{transform:scale(var(--press-scale))}
+.proto-pill button[aria-pressed="true"]{background:#FFD98A}
+.proto-pill :focus-visible{outline:2px solid #9FD0FF;outline-offset:2px}
+@media (max-width:640px){.proto-pill .pp-long{display:none}}
+
+/* paused: everything settles where it is */
+html.fx-paused *,html.fx-paused *::before,html.fx-paused *::after{transition-duration:0s!important;animation-play-state:paused!important}
+
+@media (prefers-reduced-motion:reduce){
+  .btn:active,.chip:active,.menu:active,.proto-pill button:active{transform:none}
+  .pub,.search,.btn,.chip{transition-property:background-color,color,border-color,box-shadow}
+}
+
+/* print never inherits a motion state: every effect layer off, every image at rest */
+@media print{
+  .fx-layer,.fx-chips-on,.proto-pill{display:none!important}
+  img,.pub,.hero h1,.pub-page h1{clip-path:none!important;transform:none!important;opacity:1!important;filter:none!important}
+}

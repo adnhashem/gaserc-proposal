@@ -1,0 +1,59 @@
+/* أ · ليل المكتبة — the top block is a reading room at night; the pointer carries the lamp.
+   Depth through colour only: gradients, tinted shadows, one light layer. No box changes. */
+:root{
+  --shadow-field:0 1px 2px rgb(8 16 43 / .14),0 18px 40px -16px rgb(4 9 28 / .7);
+  --shadow-card:0 1px 2px rgb(17 27 60 / .06),0 10px 24px -16px rgb(17 27 60 / .24);
+  --shadow-card-hover:0 2px 4px rgb(17 27 60 / .08),0 24px 44px -20px rgb(17 27 60 / .38);
+  --shadow-cover:0 14px 28px -12px rgb(8 16 43 / .55);
+  --shadow-big:0 28px 54px -24px rgb(8 16 43 / .62);
+  --lamp-core:oklch(0.68 0.15 248 / .52);
+  --lamp-edge:oklch(0.50 0.16 258 / .2);
+  --lamp-size:960px;
+  --glare:oklch(0.92 0.07 235 / .55);
+}
+
+/* the dark block: util → head → hero → stats, one continuous night with light layering */
+.util{background:var(--canvas);border-bottom-color:oklch(1 0 0 / .06)}
+.head{background:linear-gradient(180deg,var(--canvas),var(--surface));border-bottom-color:oklch(1 0 0 / .07)}
+.hero{position:relative;isolation:isolate;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,oklch(0.25 0.075 266) 0%,var(--canvas) 64%)}
+.stats{background:linear-gradient(180deg,var(--canvas),var(--surface));border-block-color:oklch(1 0 0 / .07);
+  box-shadow:inset 0 1px 0 oklch(1 0 0 / .04)}
+.stat{border-inline-start-color:oklch(1 0 0 / .07)}
+.search{border-color:transparent}
+.popular a{border-bottom-color:oklch(1 0 0 / .22)}
+
+/* every dark section carries a clipped copy of the one lamp */
+.util,.head,.stats,.band{position:relative;isolation:isolate;overflow:hidden}
+.util>.wrap,.head>.wrap,.stats>.wrap,.band>.wrap{position:relative;z-index:1}
+
+/* the search button is the brightest blue; the header action steps back to a quiet glass button */
+.head .btn{background:oklch(1 0 0 / .07);color:var(--ink);box-shadow:inset 0 0 0 1px oklch(1 0 0 / .2)}
+@media (hover:hover) and (pointer:fine){ .head .btn:hover{background:oklch(1 0 0 / .14)} }
+.fx-lamp{left:0;top:0;width:var(--lamp-size);height:var(--lamp-size);margin:calc(var(--lamp-size) / -2) 0 0 calc(var(--lamp-size) / -2);
+  border-radius:50%;background:radial-gradient(closest-side,var(--lamp-core),var(--lamp-edge) 55%,transparent);will-change:transform}
+
+/* reading body */
+.pub .cover{background:linear-gradient(180deg,var(--cover),oklch(0.975 0.008 265))}
+/* the night returns mid-page: news + opportunities (home) and related publications (study page) */
+section.block.band{background:linear-gradient(180deg,var(--surface),var(--canvas));border-top-color:oklch(1 0 0 / .07)}
+.band .news-item{border-color:oklch(1 0 0 / .1)}
+.band .opp{background:linear-gradient(170deg,oklch(0.25 0.065 267),var(--surface));border-color:oklch(1 0 0 / .1);
+  border-top-color:var(--accent-line);box-shadow:0 22px 44px -24px rgb(0 0 0 / .7)}
+.band .empty-note{border-color:oklch(1 0 0 / .18)}
+.band .pub{border-color:oklch(1 0 0 / .09);box-shadow:0 1px 0 oklch(1 0 0 / .04),0 22px 40px -22px rgb(0 0 0 / .7)}
+.band .pub .cover{background:linear-gradient(180deg,var(--cover),var(--surface));border-bottom-color:oklch(1 0 0 / .07)}
+.band .more{border-bottom-color:var(--accent-line)}
+.opp{box-shadow:var(--shadow-card)}
+.fx-glare{background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),var(--glare),transparent 58%);
+  mix-blend-mode:soft-light;opacity:0;transition:opacity var(--dur-hover) ease}
+.pub:hover .fx-glare,.pub-page>div:first-child:hover .fx-glare{opacity:1}
+
+/* footer: the night returns under the page */
+.foot{background:linear-gradient(180deg,oklch(0.215 0.06 268),var(--canvas) 70%);border-top-color:oklch(1 0 0 / .06)}
+.foot .legal{border-top-color:oklch(1 0 0 / .08)}
+
+/* h1 words: inline spans so line breaks never change; only opacity and blur move */
+.fx-w{display:inline}
+
+@media (max-width:900px){:root{--lamp-size:600px}}

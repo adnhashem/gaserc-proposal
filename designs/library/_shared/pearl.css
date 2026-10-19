@@ -1,0 +1,44 @@
+/* ب · لؤلؤ الخليج — pearl body, sea-blue ink, a deep-sea band and footer.
+   Depth: three nacre-sheen layers in the hero, sea-tinted shadows. No box changes. */
+:root{
+  --shadow-field:0 1px 2px rgb(1 39 73 / .06),0 16px 36px -18px rgb(1 48 83 / .38);
+  --shadow-card:0 1px 2px rgb(1 39 73 / .05),0 12px 28px -18px rgb(1 48 83 / .26);
+  --shadow-card-hover:0 4px 10px -4px rgb(1 39 73 / .10),0 28px 48px -22px rgb(1 48 83 / .40);
+  --shadow-cover:0 16px 30px -14px rgb(1 48 83 / .50);
+  --shadow-big:0 30px 56px -26px rgb(1 48 83 / .55);
+  --sheen-aqua:oklch(0.89 0.07 238 / .9);
+  --sheen-blue:oklch(0.90 0.065 256 / .88);
+  --sheen-white:oklch(0.995 0.006 230 / .9);
+  --glare:oklch(0.97 0.03 225 / .62);
+}
+
+.hero{position:relative;isolation:isolate;overflow:hidden;
+  background:linear-gradient(180deg,var(--canvas) 0%,oklch(0.915 0.05 240) 100%)}
+.fx-sheen{inset:-14%;will-change:transform}
+.fx-sheen.s1{background:radial-gradient(58% 42% at 22% 82%,var(--sheen-aqua),transparent 70%)}
+.fx-sheen.s2{background:radial-gradient(52% 38% at 78% 68%,var(--sheen-blue),transparent 72%)}
+.fx-sheen.s3{background:linear-gradient(104deg,transparent 34%,var(--sheen-white) 47%,transparent 60%)}
+.head{border-bottom-color:var(--line)}
+
+/* the deep: stats band and footer */
+.stats{background:linear-gradient(180deg,oklch(0.335 0.085 248),var(--canvas));border-block-color:oklch(1 0 0 / .06);
+  box-shadow:inset 0 1px 0 oklch(1 0 0 / .08)}
+.stat{border-inline-start-color:oklch(1 0 0 / .09)}
+.foot{background:linear-gradient(180deg,oklch(0.33 0.085 248),var(--canvas) 72%);border-top-color:oklch(1 0 0 / .06)}
+.foot .legal{border-top-color:oklch(1 0 0 / .10)}
+
+/* pearl band and covers */
+/* nacre band mid-page: the inside of the shell, iridescent and visible at rest */
+section.block.band{background:
+  linear-gradient(112deg,transparent 18%,oklch(0.995 0.006 230 / .85) 30%,transparent 42%),
+  linear-gradient(112deg,oklch(0.955 0.03 232) 0%,oklch(0.935 0.04 222) 34%,oklch(0.95 0.035 258) 62%,oklch(0.97 0.018 236) 100%)}
+section.block.band .pub,section.block.band .opp{box-shadow:var(--shadow-card)}
+.pub .cover{background:linear-gradient(180deg,var(--cover),oklch(0.97 0.012 232))}
+.opp{box-shadow:var(--shadow-card)}
+@media (hover:hover) and (pointer:fine){
+  .pub:hover{transform:translateY(-4px)}
+}
+.fx-glare{background:linear-gradient(115deg,transparent 30%,var(--glare) calc(var(--gx,50%) - 4%),transparent calc(var(--gx,50%) + 18%));
+  mix-blend-mode:soft-light;opacity:0;transition:opacity var(--dur-hover) ease}
+.pub-page>div:first-child:hover .fx-glare{opacity:1}
+@media (prefers-reduced-motion:reduce){.pub:hover{transform:none}}
